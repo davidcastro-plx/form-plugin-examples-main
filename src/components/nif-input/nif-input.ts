@@ -1,12 +1,27 @@
-import { html, LitElement } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { PluginContract } from '@nintex/form-plugin-contract';
 
-import { styles } from './nif-input.styles';
-
 @customElement('identity-card-textfield')
 export class IdentityCardTextfield extends LitElement {
-  static styles = styles;  //Add custom CSS. See https://help.nintex.com/en-US/formplugins/Reference/Style.htm
+  static styles = css`
+  .form-control {
+    color: var(--ntx-form-theme-color-secondary);
+    background-color: var(
+      --ntx-form-theme-color-input-background,
+      transparent
+    );
+    font-size: var(--ntx-form-theme-text-input-size);
+    font-family: var(--ntx-form-theme-font-family);
+    border: 1px solid var(--ntx-form-theme-color-border);
+    border-radius: var(--ntx-form-theme-border-radius);
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: var(--ntx-form-theme-color-primary);
+  }
+  `;
 
   @property()
   label!: string;
@@ -23,8 +38,43 @@ export class IdentityCardTextfield extends LitElement {
   @property({ type: Boolean })
   visibility: boolean = false;
 
-  static getMetaConfig(): Promise<PluginContract> {
-    return import('./nif-input.config').then(x => x.config);
+  static getMetaConfig(): Promise<PluginContract> | PluginContract {
+    return {
+        controlName: 'Identity Card Text field',
+        pluginVersion: '1.0',
+        description: 'Text field with identity card validation',
+        groupName: 'Custom',
+        fallbackDisableSubmit: false,
+        iconUrl: 'one-line-text',
+        version: '1.0',
+        properties: { //A custom configuration field. See https://help.nintex.com/en-US/formplugins/Reference/CustomField.htm
+            value: {  //A field to pass a value to the workflow as a variable. See https://help.nintex.com/en-US/formplugins/Reference/StoreValue.htm
+                title: 'Value',
+                type: 'string',
+                // this is to mark the field as value field. it should only be defined once in the list of properties
+                isValueField: true,
+                defaultValue: '',
+                required: true,
+                description: 'Identity card number'
+            },
+            identityCardType: {
+                title: 'Identity card type',
+                type: 'string',
+                enum: [ 'D.N.I (N.I.F.)', 'Nº de C.U.R.P', 'Pasaporte', 'Tarjeta de Residente Comunitaria', 'Permiso de residencia y Trabajo', 'Nº de Identificación de Extranjero', 'Nº Cédula Dominicana', 'Emp. Global - ID Local' ],
+                defaultValue: 'D.N.I (N.I.F.)',
+                required: true,
+                description: 'Identity card type'
+            }
+        },
+        standardProperties: {
+            fieldLabel: true,
+            description: true,
+            defaultValue: true,
+            readOnly: true,
+            required: true,
+            visibility: true   //Add a read-only mode. See https://help.nintex.com/en-US/formplugins/Reference/ReadOnly.htm
+        }
+    };
   }
 
   // Render the UI as a function of component state
