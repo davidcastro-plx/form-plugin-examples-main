@@ -89,8 +89,7 @@ let PlxNifTextfield = _decorate([e$1('plx-nif-textfield')], function (_initializ
             documentType: {
               title: 'Document Type',
               description: 'Identity Card Type',
-              type: 'string',
-              required: true
+              type: 'string'
             },
             documentNumber: {
               title: 'Document Number',
