@@ -90,7 +90,6 @@ let PlxNifTextfield = _decorate([e$1('plx-nif-textfield')], function (_initializ
               title: 'Document Type',
               description: 'Identity Card Type',
               type: 'string',
-              enum: ['D.N.I (N.I.F.)', 'Nº de C.U.R.P', 'Pasaporte', 'Tarjeta de Residente Comunitaria', 'Permiso de residencia y Trabajo', 'Nº de Identificación de Extranjero', 'Nº Cédula Dominicana', 'Emp. Global - ID Local'],
               required: true
             },
             documentNumber: {
