@@ -34,23 +34,17 @@ let PlxNifTextfield = _decorate([e$1('plx-nif-textfield')], function (_initializ
       }
     }, {
       kind: "field",
-      decorators: [e({
-        type: String
-      })],
+      decorators: [e()],
       key: "documentNumber",
       value: void 0
     }, {
       kind: "field",
-      decorators: [e({
-        type: String
-      })],
+      decorators: [e()],
       key: "documentType",
       value: void 0
     }, {
       kind: "field",
-      decorators: [e({
-        type: String
-      })],
+      decorators: [e()],
       key: "placeholder",
       value: void 0
     }, {
@@ -86,11 +80,6 @@ let PlxNifTextfield = _decorate([e$1('plx-nif-textfield')], function (_initializ
             visibility: true
           },
           properties: {
-            documentType: {
-              title: 'Document Type',
-              description: 'Identity Card Type',
-              type: 'string'
-            },
             documentNumber: {
               title: 'Document Number',
               description: 'Identity Card Number',

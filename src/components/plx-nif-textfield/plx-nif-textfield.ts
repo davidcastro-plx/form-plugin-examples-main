@@ -22,13 +22,13 @@ export class PlxNifTextfield extends LitElement {
     }
   `;
 
-  @property({ type: String })
+  @property()
   documentNumber!: string;
 
-  @property({ type: String })
+  @property()
   documentType!: string;
 
-  @property({ type: String })
+  @property()
   placeholder!: string;
 
   @property({ type: Boolean })
@@ -54,11 +54,6 @@ export class PlxNifTextfield extends LitElement {
           visibility: true
         },
         properties: {
-          documentType: {
-            title: 'Document Type',
-            description: 'Identity Card Type',
-            type: 'string'
-          },
           documentNumber: {
             title: 'Document Number',
             description: 'Identity Card Number',
